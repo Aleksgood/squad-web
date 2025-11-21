@@ -2,6 +2,13 @@
 let uploadedMapImage = null;
 let markers = [];
 
+// Configuration
+const PLAYER_NAMES = [
+    'Гравець 1', 'Гравець 2', 'Гравець 3', 'Гравець 4',
+    'Гравець 5', 'Гравець 6', 'Гравець 7', 'Гравець 8',
+    'Гравець 9', 'Гравець 10'
+];
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     initializeMapUpload();
@@ -82,8 +89,12 @@ function renderMarkers() {
         // Add remove functionality on right click
         markerEl.addEventListener('contextmenu', function(e) {
             e.preventDefault();
-            markers.splice(index, 1);
-            renderMarkers();
+            // Find the current position of this marker in the array
+            const currentIndex = markers.indexOf(marker);
+            if (currentIndex > -1) {
+                markers.splice(currentIndex, 1);
+                renderMarkers();
+            }
         });
         
         mapElement.appendChild(markerEl);
@@ -110,13 +121,7 @@ function initializePlayerDropdowns() {
         select.appendChild(defaultOption);
         
         // Add player options
-        const players = [
-            'Гравець 1', 'Гравець 2', 'Гравець 3', 'Гравець 4',
-            'Гравець 5', 'Гравець 6', 'Гравець 7', 'Гравець 8',
-            'Гравець 9', 'Гравець 10'
-        ];
-        
-        players.forEach(player => {
+        PLAYER_NAMES.forEach(player => {
             const option = document.createElement('option');
             option.value = player;
             option.textContent = player;
@@ -155,11 +160,13 @@ function addPlayerToTeam(column, playerName) {
     removeBtn.onclick = () => card.remove();
     card.appendChild(removeBtn);
     
-    // Add card before dropdown or at the end
+    // Insert card after dropdown
     const dropdown = column.querySelector('.dropdown-container');
-    if (dropdown && dropdown.nextSibling) {
-        column.insertBefore(card, dropdown.nextSibling);
+    if (dropdown) {
+        // Insert after the dropdown element
+        dropdown.parentNode.insertBefore(card, dropdown.nextSibling);
     } else {
+        // Fallback: append to column
         column.appendChild(card);
     }
 }
