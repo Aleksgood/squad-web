@@ -15,11 +15,6 @@ async function init() {
 async function loadPlayersFromProject() {
   // Load players.csv from project
   try {
-    const state = getState();
-    // 💡 Додаємо перевірку: завантажуємо гравців, лише якщо список гравців у стані порожній.
-    if (state.players && state.players.length > 0) {
-      return;
-    }
     const res = await fetch('data/players/players.csv');
     if (!res.ok) return;
     const text = await res.text();
