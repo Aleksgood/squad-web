@@ -1,82 +1,45 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mockup Layout</title>
-    <link rel="stylesheet" href="CSS/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Squad Teams</title>
+  <meta name="description" content="Статичний менеджер команд для Squad" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/pico.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-
-<header class="top-bar">
-    <div class="header-content">
-        <div class="logo">⚔️ Squad Planner</div>
-        <nav class="nav-menu">
-            <a href="#" class="nav-link">Карти</a>
-            <a href="#" class="nav-link">Команди</a>
-            <a href="#" class="nav-link">Стратегії</a>
-        </nav>
-    </div>
+<header class="toolbar container-fluid">
+  <nav>
+    <ul>
+      <li><strong>Squad Planner</strong></li>
+    </ul>
+  </nav>
 </header>
-
 <main class="container">
-
-    <h1 class="title">MAP</h1>
-
-    <div class="map-section">
-        <div class="side-block">Карты</div>
-        <div class="map"></div>
-        <div class="side-block">Список / Ноды</div>
-    </div>
-
-    <div class="cards-row">
-        <div class="column">
-            <button class="close"></button>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-        </div>
-
-        <div class="column">
-            <button class="close"></button>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-        </div>
-
-        <div class="column">
-            <button class="close"></button>
-        </div>
-
-        <div class="column">
-            <button class="close"></button>
-        </div>
-
-        <button class="add">+ add</button>
-    </div>
-
+  <section id="teamsSection" aria-label="Команди" class="teams-grid"></section>
+  <div class="add-team-wrapper"><button id="btnAddTeam" class="contrast">Add команда</button></div>
+  <section id="playerDetailPanel" aria-label="Деталі гравця" hidden>
+    <h4>Деталі гравця</h4>
+    <form id="playerDetailForm" class="grid">
+      <label>Ім'я<input name="name" required /></label>
+      <label>Роль<input name="role" /></label>
+      <label>Фланг<input name="flank" /></label>
+      <label>Рівень стрільби<input name="shootingLevel" type="number" min="0" max="10" /></label>
+      <div class="grid span-full">
+        <button type="submit" class="primary">Зберегти</button>
+        <button type="button" id="btnDeletePlayer" class="secondary">Видалити</button>
+      </div>
+    </form>
+  </section>
 </main>
-
-<footer class="bottom-bar">
-    <div class="footer-content">
-        <div class="footer-section">
-            <span class="footer-label">Стрільба:</span>
-            <span class="footer-value">По обставинам</span>
-        </div>
-        <div class="footer-section">
-            <span class="footer-label">Лайн:</span>
-            <span class="footer-value">Активний</span>
-        </div>
-        <div class="footer-section">
-            <span class="footer-label">Роль:</span>
-            <span class="footer-value">Атака/Захист</span>
-        </div>
-    </div>
+<footer class="container">
 </footer>
 
-<div class="signature">Aleks</div>
+<!-- Modals / Toast zone -->
+<div id="toastContainer" aria-live="polite" class="toast-container"></div>
+<div id="modalContainer" class="modal-container" hidden></div>
 
-<script src="script.js"></script>
+<script type="module" src="assets/js/app.js"></script>
 </body>
 </html>

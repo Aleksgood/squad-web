@@ -1,0 +1,6 @@
+Name,Role,Flank,ShootingLevel
+Player1,Medic,Left,4
+Player2,Rifleman,Right,5
+Player3,Leader,Center,7
+Player4,Support,Left,6
+Player5,Engineer,Right,5
