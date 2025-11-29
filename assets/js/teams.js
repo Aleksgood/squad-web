@@ -73,7 +73,9 @@ function addPlayerPrompt(teamId) {
   });
 }
 
-function selectPlayer(p) {
+function addPlayerPrompt(p) {
+  const team = getState().teams.find(t => t.id === p);
+  if (!team) return;
   const panel = document.getElementById('playerDetailPanel'); 
   panel.hidden = false; 
   const form = document.getElementById('playerDetailForm');
