@@ -48,6 +48,7 @@ function deleteTeam(id) {
 }
 
 function addPlayerPrompt(teamId) {
+  // Show available players from state that are not yet assigned
   const assignedIds = new Set();
   getState().teams.forEach(t => t.players.forEach(pid => assignedIds.add(pid)));
   const available = getState().players.filter(p => !assignedIds.has(p.id));
@@ -73,9 +74,7 @@ function addPlayerPrompt(teamId) {
   });
 }
 
-function addPlayerPrompt(p) {
-  const team = getState().teams.find(t => t.id === p);
-  if (!team) return;
+function selectPlayer(p) {
   const panel = document.getElementById('playerDetailPanel'); 
   panel.hidden = false; 
   const form = document.getElementById('playerDetailForm');
